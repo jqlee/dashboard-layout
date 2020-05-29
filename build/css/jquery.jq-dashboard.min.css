@@ -1,0 +1,265 @@
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap);
+@charset "UTF-8";
+:root {
+  --screen-width: 100%;
+  --menu-toggler-width: 2.5em;
+  --menu-width: 10em;
+  --menu-init-left: calc(var(--menu-toggler-width) - var(--menu-width));
+  --body-left: calc(var(--menu-width) + var(--menu-init-left));
+  --sidebar-bgcolor: #9B3;
+  --content-bgcolor: #936;
+  --menu-bgcolor: rgba(60, 60, 60, 1);
+  --menu-fgcolor: #f6f6f6;
+  --menu-linkcolor: #c0d3ff;
+  --menu-linkcolor-hover: #ccc;
+  --menu-block-bgcolor: rgba(0, 0, 0, 0.5);
+  --menu-itemhover-bgcolor: #666;
+  --sidebar-shadow: 0 0 3px 0px rgb(33,99,66);
+  --sidebar-item-hover-bgcolor: #ac4;
+  --header-ud-padding: 0.5em;
+  --header-total-height: calc(1.5em + calc(var(--header-ud-padding) * 2)); }
+
+html, body {
+  height: 100%; }
+
+body.jq-dashboard {
+  /*position: absolute;*/
+  font-family: 'Noto Sans TC', sans-serif;
+  padding: 0;
+  margin: 0;
+  margin-left: var(--body-left);
+  width: calc(100% - var(--body-left));
+  z-index: 0;
+  transition: margin-left ease-out 133ms;
+  /*
+  .jq-overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s;    
+  }
+*/
+  /* MENU */
+  /*
+  &.menu-push {
+    margin-left: var(--menu-width);
+
+  }
+*/
+  /*
+  &.menu-overlay {
+    .jq-overlay {
+      width: 100%;
+      opacity: 0.8;
+      z-index: 3;
+    }
+  }
+*/ }
+  body.jq-dashboard .fa-1 {
+    font-size: 0.5em; }
+  body.jq-dashboard .fa-2 {
+    font-size: 1em; }
+  body.jq-dashboard .fa-3 {
+    font-size: 1.5em; }
+  body.jq-dashboard .fa-4 {
+    font-size: 2em; }
+  body.jq-dashboard a {
+    text-decoration: none; }
+  body.jq-dashboard ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; }
+    body.jq-dashboard ul li {
+      padding: 0; }
+  body.jq-dashboard .jqd-content {
+    height: calc(100% - var(--header-total-height));
+    /*position: absolute;*/
+    background-color: var(--content-bgcolor);
+    padding: 0;
+    margin-top: -1em;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  body.jq-dashboard .jqd-menu {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    position: fixed;
+    left: var(--menu-init-left);
+    transition: left ease-out 133ms;
+    width: var(--menu-width);
+    height: 100%;
+    z-index: 100;
+    background-color: var(--menu-bgcolor);
+    color: var(--menu-fgcolor);
+    /* menu 通用樣式 */
+    /* 針對第一層menu的樣式 */ }
+    body.jq-dashboard .jqd-menu a {
+      color: var(--menu-linkcolor); }
+      body.jq-dashboard .jqd-menu a.toggle-menu:hover {
+        color: var(--menu-linkcolor-hover); }
+    body.jq-dashboard .jqd-menu ul {
+      background-color: var(--menu-block-bgcolor);
+      transition: max-height ease-out 266ms; }
+      body.jq-dashboard .jqd-menu ul > li > input[type="checkbox"] {
+        display: none; }
+        body.jq-dashboard .jqd-menu ul > li > input[type="checkbox"]:checked ~ label:after {
+          content: '\25BE'; }
+        body.jq-dashboard .jqd-menu ul > li > input[type="checkbox"]:checked ~ ul {
+          max-height: 500px;
+          overflow: visible; }
+      body.jq-dashboard .jqd-menu ul > li > label {
+        white-space: nowrap;
+        display: block;
+        padding: 0.5em 0.2em 0.5em 1em; }
+        body.jq-dashboard .jqd-menu ul > li > label[for]:after {
+          content: '\25B8';
+          margin-left: 10px;
+          float: none; }
+        body.jq-dashboard .jqd-menu ul > li > label:hover {
+          background-color: var(--menu-itemhover-bgcolor); }
+        body.jq-dashboard .jqd-menu ul > li > label > i {
+          display: inline-block; }
+    body.jq-dashboard .jqd-menu > ul > li {
+      /* 針對第二層之後的子選單 */ }
+      body.jq-dashboard .jqd-menu > ul > li > label[for]:after {
+        float: right;
+        margin-right: -3px; }
+      body.jq-dashboard .jqd-menu > ul > li > label > i {
+        position: absolute;
+        right: 1em;
+        margin-top: 0.3em; }
+      body.jq-dashboard .jqd-menu > ul > li > label > span {
+        visibility: hidden; }
+      body.jq-dashboard .jqd-menu > ul > li ul {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        /* static sub-menu */
+        max-height: 0;
+        transition: max-height ease-out 266ms;
+        margin-left: 10%;
+        overflow: hidden; }
+        body.jq-dashboard .jqd-menu > ul > li ul li label i {
+          margin-right: 0.3em; }
+    body.jq-dashboard .jqd-menu ul ul {
+      position: absolute;
+      margin-top: -2.5em;
+      margin-left: 100% !important; }
+      body.jq-dashboard .jqd-menu ul ul li label > i {
+        position: relative; }
+    body.jq-dashboard .jqd-menu.static-menu ul ul {
+      position: inherit;
+      overflow: hidden; }
+    body.jq-dashboard .jqd-menu .mobile-nav {
+      /*display: none;*/
+      padding: 1em; }
+      body.jq-dashboard .jqd-menu .mobile-nav i.fa.fa-bars {
+        float: right;
+        margin-top: 0.3em; }
+  body.jq-dashboard #menu-collapse {
+    display: none; }
+    body.jq-dashboard #menu-collapse:checked ~ .jqd-menu {
+      left: 0;
+      /* 通用 */
+      /* 第一層 */ }
+      body.jq-dashboard #menu-collapse:checked ~ .jqd-menu ul > li > label[for]:after {
+        float: none; }
+      body.jq-dashboard #menu-collapse:checked ~ .jqd-menu ul > li > label > i {
+        position: relative;
+        margin-right: 0.3em; }
+      body.jq-dashboard #menu-collapse:checked ~ .jqd-menu ul > li > label > span {
+        visibility: visible; }
+      body.jq-dashboard #menu-collapse:checked ~ .jqd-menu > ul > li > label > i {
+        right: 0; }
+  body.jq-dashboard.menu-push .jqd-menu, body.jq-dashboard.menu-overlay .jqd-menu {
+    left: 0;
+    /* 通用 */
+    /* 第一層 */ }
+    body.jq-dashboard.menu-push .jqd-menu ul > li > label[for]:after, body.jq-dashboard.menu-overlay .jqd-menu ul > li > label[for]:after {
+      float: none; }
+    body.jq-dashboard.menu-push .jqd-menu ul > li > label > i, body.jq-dashboard.menu-overlay .jqd-menu ul > li > label > i {
+      position: relative;
+      margin-right: 0.3em; }
+    body.jq-dashboard.menu-push .jqd-menu ul > li > label > span, body.jq-dashboard.menu-overlay .jqd-menu ul > li > label > span {
+      visibility: visible; }
+    body.jq-dashboard.menu-push .jqd-menu > ul > li > label > i, body.jq-dashboard.menu-overlay .jqd-menu > ul > li > label > i {
+      right: 0; }
+  body.jq-dashboard .jqd-sidebar {
+    position: fixed;
+    top: 2em;
+    right: 1em;
+    z-index: 3;
+    background-color: var(--sidebar-bgcolor);
+    padding: 0;
+    box-shadow: var(--sidebar-shadow); }
+    body.jq-dashboard .jqd-sidebar ul li label {
+      padding: 0.3em 0.5em;
+      display: block; }
+      body.jq-dashboard .jqd-sidebar ul li label:hover {
+        background-color: var(--sidebar-item-hover-bgcolor); }
+  body.jq-dashboard .jqd-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    /*position: absolute;*/ }
+    body.jq-dashboard .jqd-header ul.shadow {
+      background-color: #ffffff;
+      box-shadow: 0 0 1em #333; }
+      body.jq-dashboard .jqd-header ul.shadow li {
+        padding: var(--header-ud-padding) 1em; }
+        body.jq-dashboard .jqd-header ul.shadow li a {
+          color: #666; }
+        body.jq-dashboard .jqd-header ul.shadow li:hover {
+          background-color: #fdf9e0; }
+          body.jq-dashboard .jqd-header ul.shadow li:hover a {
+            color: #333; }
+    body.jq-dashboard .jqd-header .shadow-placeholder {
+      height: 1em; }
+    body.jq-dashboard .jqd-header ul li {
+      display: inline-block; }
+  body.jq-dashboard .jqd-crumbs {
+    /*position: absolute;*/ }
+    body.jq-dashboard .jqd-crumbs ul li {
+      display: inline-block; }
+  body.jq-dashboard iframe.content {
+    max-height: 1000px;
+    width: 100%;
+    height: calc(100% - 2em); }
+
+/*Pixel 2: width 411*/
+/*iphone X: width 375*/
+@media screen and (max-width: 450px) {
+  body.jq-dashboard {
+    margin-left: 0;
+    width: 100%; }
+    body.jq-dashboard .jqd-menu {
+      left: 0;
+      width: 100%;
+      height: auto; }
+      body.jq-dashboard .jqd-menu > ul {
+        max-height: 0;
+        overflow: hidden; }
+        body.jq-dashboard .jqd-menu > ul > li label i {
+          position: relative; }
+      body.jq-dashboard .jqd-menu .mobile-nav {
+        display: block; }
+      body.jq-dashboard .jqd-menu ul ul {
+        position: inherit;
+        margin-left: 1em !important;
+        margin-top: auto !important; }
+    body.jq-dashboard #menu-collapse:checked ~ nav.jqd-menu > ul {
+      max-height: 1000px; }
+    body.jq-dashboard.menu-push .jqd-menu > ul {
+      max-height: 1000px; }
+    body.jq-dashboard .jqd-content {
+      margin-top: 0;
+      word-wrap: break-word; } }
+
